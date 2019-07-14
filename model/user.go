@@ -1,6 +1,7 @@
 package model
 
+//User user
 type User struct {
-	Account  string `form:"name"`
-	Password string `form:"password"`
+	Username string `form:"username" json:"username" xml:"username"`
+	Password string `form:"password" json:"password"`
 }
