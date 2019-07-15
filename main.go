@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"bloom.io/ctrl"
@@ -20,17 +19,9 @@ func main() {
 		})
 	}
 
-	r.Use(func(c *gin.Context) {
-		fmt.Println("test")
-		c.Next()
-	})
-
 	r.GET("/", ctrl.Index)
-
-	r.GET("/user/:name", func(c *gin.Context) {
-		name := c.Param("name")
-		c.String(http.StatusOK, "Hello %s", name)
-	})
+	r.GET("/login", ctrl.Login)
+	r.GET("/user/:name",ctrl.SessionFilter, ctrl.GetUserByName)
 
 	v2 := r.Group("/v2")
 	{
