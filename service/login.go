@@ -1,10 +1,14 @@
 package service
 
+import (
+	"bloom.io/model"
+)
+
 //Login Action
-func Login(username string, password string) (string, bool) {
+func Login(username string, password string) (interface{}, bool) {
 	if username == password {
-		return "login successfully", true
+		return model.User{Username: username, Password: password}, true
 	} else {
-		return "username password not match", false
+		return nil, false
 	}
 }

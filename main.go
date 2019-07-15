@@ -3,13 +3,20 @@ package main
 import (
 	"net/http"
 
+	"bloom.io/middleware"
+
 	"bloom.io/ctrl"
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+
 	r := gin.Default()
 	{
+		store := cookie.NewStore([]byte("secret"))
+		r.Use(sessions.Sessions("session-store", store))
 		r.StaticFile("/robots.txt", "./static/robots.txt")
 		r.StaticFile("/favicon.ico", "./static/favicon.ico")
 		r.Static("/static", "./static")
@@ -20,8 +27,11 @@ func main() {
 	}
 
 	r.GET("/", ctrl.Index)
+
 	r.GET("/login", ctrl.Login)
-	r.GET("/user/:name",ctrl.SessionFilter, ctrl.GetUserByName)
+	r.POST("/login", ctrl.LoginHandle)
+
+	r.GET("/user/:name", middleware.Authz, ctrl.UserByName)
 
 	v2 := r.Group("/v2")
 	{

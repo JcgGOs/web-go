@@ -12,8 +12,8 @@ func User(c *gin.Context) {
 	c.String(http.StatusOK, "Hello %s", name)
 }
 
-//GetUserByName user handler
-func GetUserByName(c *gin.Context) {
+//UserByName user handler
+func UserByName(c *gin.Context) {
 	name := c.Param("name")
 	c.String(http.StatusOK, "Hello %s", name)
 }
