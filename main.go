@@ -1,13 +1,16 @@
 package main
 
 import (
+	"encoding/gob"
 	"net/http"
 
 	"bloom.io/middleware"
 
+	"bloom.io/model"
+
 	"bloom.io/ctrl"
 	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/cookie"
+	"github.com/gin-contrib/sessions/memstore"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,8 +18,14 @@ func main() {
 
 	r := gin.Default()
 	{
-		store := cookie.NewStore([]byte("secret"))
-		r.Use(sessions.Sessions("session-store", store))
+		store := memstore.NewStore([]byte("secret"))
+		r.Use(sessions.Sessions("mysession", store))
+		{
+			gob.Register(model.User{})
+		}
+
+		r.Use(middleware.Authz)
+
 		r.StaticFile("/robots.txt", "./static/robots.txt")
 		r.StaticFile("/favicon.ico", "./static/favicon.ico")
 		r.Static("/static", "./static")
@@ -30,8 +39,9 @@ func main() {
 
 	r.GET("/login", ctrl.Login)
 	r.POST("/login", ctrl.LoginHandle)
+	r.POST("/logout", middleware.Logout)
 
-	r.GET("/user/:name", middleware.Authz, ctrl.UserByName)
+	r.GET("/user/:name", ctrl.UserByName)
 
 	v2 := r.Group("/v2")
 	{

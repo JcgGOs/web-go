@@ -1,12 +1,10 @@
 package ctrl
 
 import (
-	"fmt"
 	"net/http"
+	"net/url"
 
-	"bloom.io/middleware"
-
-	"bloom.io/service"
+	"bloom.io/model"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -17,26 +15,26 @@ const SessionKey string = "_session_"
 
 // Login login
 func Login(c *gin.Context) {
-	c.HTML(http.StatusOK, "login.html", gin.H{})
+	c.HTML(http.StatusOK, "login.html", gin.H{"loginUrl": c.Request.RequestURI})
 }
 
 //LoginHandle handle login
 func LoginHandle(c *gin.Context) {
-	username := c.Query("username")
-	password := c.Query("password")
+	username := c.PostForm("username")
+	password := c.PostForm("password")
 
-	var redirect string
-	if user, ok := service.Login(username, password); !ok {
-		redirect = fmt.Sprintf("/login?redirect=%v", c.Request.RequestURI)
-	} else {
-		session := sessions.Default(c)
-		{
-			session.Set(middleware.SessionKey, user)
-			session.Save()
-		}
-
-		redirect = c.DefaultQuery("redirect", "/")
+	user := model.User{
+		Username: username,
+		Password: password,
+	}
+	session := sessions.Default(c)
+	{
+		session.Set("user", user)
+		session.Save()
 	}
 
-	c.Redirect(http.StatusMovedPermanently, redirect)
+	redirect := c.DefaultQuery("redirect", "/")
+	uri, _ := url.QueryUnescape(redirect)
+	c.Redirect(http.StatusMovedPermanently, uri)
+
 }
