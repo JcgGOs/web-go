@@ -1,20 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome</title>
-</head>
-<body>
-    <div>topbar</div>
-    <div>
-        <div>
-            {{.user}}
+    <title>bbs</title>
+    <style>
+        #toolbar {
+            list-style: none;
+            margin-left: 5%;
+            width: 90%;
+        }
 
-        </div>
-        <div>right</div>
+        ul {
+            display: inline;
+        }
+
+        ul>li {
+            display: inline-block;
+        }
+
+        #toolbar li>a {
+            padding: 14.5px 5px 14.5px 5px;
+            line-height: 21px;
+        }
+
+        #toolbar li>input {
+            display: inline-block;
+            vertical-align: bottom;
+        }
+
+        #footer a.info {
+            color: gray;
+            text-decoration: none;
+            margin-right: 3%;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        .tab {
+            font-size: 13px;
+            line-height: 13px;
+            padding: 5px 8px;
+            margin-right: 5px;
+            border-radius: 3px;
+            display: inline-block;
+            color: #000
+        }
+
+        .topic-activity{
+            font-size: 11px;
+            margin-top: 5px;
+            margin-bottom:5px;
+            color: #ccc
+        }
+        .topic-activity a{
+            text-decoration: none;
+            color: #999;
+            margin-right: 2px;
+        }
+        .tag{
+            border:solid 0px;
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .avatar{
+            width: 48px;
+            height: 48px;
+        }
+
+        .pagination{
+            margin-top: 15px;
+        }
+        .page{
+            text-decoration: none;
+            padding: 5px 10px 5px 10px;
+            
+        }
+        .box{
+            border:solid 1px gray;
+            margin: 10px 0 10px 0;
+            padding: 5px;
+        }
+        .box ul{
+            display: inline-block;
+        }
+        .box a{
+            display: block;
+            font-size: 13px;
+        }
+        .box .title{
+            line-height: 24px;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: solid 1px green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toolbar">
+        <ul style="float: left">
+            <li> <a href="#">首页</a> </li>
+            <li><a href="#tcle">文章</a></li>
+            <li><a href="#">资源</a></li>
+            <li><a href="#">其他2</a></li>
+            <li>
+                <input type="text" name="" id="j_search">
+            </li>
+        </ul>
+
+        <ul style="float: right;margin-right:25px">
+            <li><a href="#">{{.user.Username}}</a></li>
+        </ul>
     </div>
-    <div>footbar</div>
+    <div style="clear: both"></div>
+    <div style="min-height: 600px;margin-left: 5%;width: 90%">
+        <div style="float: left;width: 80%;">
+            <div style="border-bottom:1px solid #e2e2e2;margin-bottom: 3px;">
+                <ul>
+                    <li><a class="tab" href="#">全部</a></li>
+                    <li><a class="tab" href="#">最热</a></li>
+                    <li><a class="tab" href="#">最新</a></li>
+                    <li><a class="tab" href="#">Blog</a></li>
+                    <li><a class="tab" href="#">城市</a></li>
+                </ul>
+            </div>
+            
+            <div class="topic" style="display:flex;margin:2px 0 0px 0;border-bottom:1px solid #e2e2e2">
+                
+               <img class="avatar" src="/static/img/avatar.jpg" style="margin-right: 10px;">
+                
+                
+                <div style="display: inline-block;    flex:1;">
+                    <div class="topic-summary">
+                        <span>我的Go 语言学习之路</span>
+                        <span style="float: right;font-weight: bold">hellsam</span>
+                    </div>
+                    <div class="topic-activity">
+                        <span class="tags">
+                            <a class="tag" href="/tag/Go">Go</a>
+                            /
+                            <a class="tag" href="/tag/技术">技术</a>
+                            /
+                            <a class="tag" href="/tag/Web">Web</a>
+                        </span>
+                        <span>•</span>
+                        <span>
+                            
+                            <a href="#111111111">	凉丶心园 </a>
+                            <span>回复</span>
+                            <span>•</span>
+                            <span>12小时前</span>
+                            <span style="float: right;font-weight: bold;">1234</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination" style="text-align: center">
+                <ul>
+                    <li><a class="page" href="#">pre</a></li>
+                    <li><a class="page" href="#">1</a></li>
+                    <li><a class="page" href="#">2</a></li>
+                    <li><a class="page" href="#">3</a></li>
+                    <li><a class="page" href="#">4</a></li>
+                    <li><a class="page" href="#">5</a></li>
+                    <li><a class="page" href="#">next</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="float: right;width: 19%">
+            <div class="box" style="border: solid 1px green">
+                <img class="avatar" src="/static/img/avatar.jpg" style="display: inline;margin-left: 10%">
+                <div style="display: inline-block;margin-left: 15%">
+                    <div >GoLang</div>
+                    <div ><a href="#">设置</a></div>
+                </div>
+                <div>
+                    <a href="" style="margin-left: 10%;margin-right: 20%;">灌水</a>
+                    <a href="" style="margin-right: 25%">发帖</a>
+                    <a href="">发帖</a>
+                </div>
+
+                <div>
+                    <span>
+                        您有一条消息
+                    </span>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="title">title</div>
+                <div>
+                        <a >主题数: 9522 个</a>
+                        <a >文章数: 21931 篇</a>
+                        <a >回复数: 33933 条</a>
+                        <a >资源数: 15289 个</a>
+                        <a >项目数: 942 个</a>
+                        <a >图书数: 72 本</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+    <div id="footer" style="margin-left: 3%">
+        <div>
+            <strong>
+                <a class="info" href="#about">关于</a>
+                <a class="info" href="#faq">FAQ</a>
+                <a class="info" href="#111">Github</a>
+                <a class="info" href="#111">免责声明</a>
+                <a class="info" href="#111">联系我们</a>
+            </strong>
+            <a class="info" href="#11" style="color:#c6c4c4">在线人数 10234</a>
+        </div>
+        <div>
+            <span style="color: #c6c4c4; font-size: 13px">
+                <a>京ICP备14030343号-1</a>
+                <a>PowerBy Go</a>
+            </span>
+        </div>
+    </div>
 </body>
+
 </html>
