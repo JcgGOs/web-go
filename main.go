@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/gob"
+	"html/template"
 	"net/http"
 
 	"bloom.io/model"
@@ -28,9 +29,13 @@ func main() {
 		r.StaticFile("/robots.txt", "./static/robots.txt")
 		r.StaticFile("/favicon.ico", "./static/favicon.ico")
 		r.Static("/static", "./static")
+		r.SetFuncMap(template.FuncMap{
+			"fmtDate": tool.FmtDate,
+			"fmtTime": tool.FmtTime,
+		})
 		r.LoadHTMLGlob("views/*.html")
 		r.NoRoute(func(c *gin.Context) {
-			c.HTML(http.StatusNotFound, "404.html", gin.H{"msg": "Page NOT FOUND"})
+			c.HTML(http.StatusNotFound, "404.html", gin.H{})
 		})
 	}
 

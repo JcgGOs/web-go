@@ -11,9 +11,16 @@
     <h1 style="text-align: center">
         {{.topic.Title}}
     </h1>
+
     <div>
         {{.topic}}
         {{.topic.Content}}
+    </div>
+
+    <hr>
+    <div>
+            {{.topic.CreateAt | fmtDate }}
+            hello
     </div>
 </body>
 </html>
