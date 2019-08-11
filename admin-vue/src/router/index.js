@@ -94,7 +94,7 @@ export const constantRoutes = [
         name: 'Topic Create',
         component: () => import('@/views/topic/create'),
         meta: { title: 'Topic Create', icon: 'table' }
-      },
+      }
     ]
   },
   {

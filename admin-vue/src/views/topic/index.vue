@@ -54,11 +54,11 @@ export default {
     return {
       rows: [
           {
-              id:1,
-              title:"我的Java 成神之路",
-              user:"作者",
-              status:"publish",
-              create_at:'2019-08-11 11:12:12'
+              id: 1,
+              title: "我的Java 成神之路",
+              user: "作者",
+              status: "publish",
+              create_at: '2019-08-11 11:12:12'
           }
       ],
       loading: false

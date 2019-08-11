@@ -9,14 +9,10 @@
       highlight-current-row
     >
       <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
+        <template slot-scope="scope">{{ scope.$index }}</template>
       </el-table-column>
       <el-table-column label="Username" width="200">
-        <template slot-scope="scope">
-          {{ scope.row.username }}
-        </template>
+        <template slot-scope="scope">{{ scope.row.username }}</template>
       </el-table-column>
       <el-table-column label="Password" width="110" align="center">
         <template slot-scope="scope">
@@ -24,9 +20,7 @@
         </template>
       </el-table-column>
       <el-table-column label="Email" width="200" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.email }}
-        </template>
+        <template slot-scope="scope">{{ scope.row.email }}</template>
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
@@ -60,14 +54,14 @@ export default {
   data() {
     return {
       users: [
-          {
-              id:1,
-              username:"username",
-              password:"password",
-              email:"tantao700@163.com",
-              status:"inactive",
-              create_at:'2019-08-11 11:12:12'
-          }
+        {
+          id: 1,
+          username: 'username',
+          password: 'password',
+          email: 'tantao700@163.com',
+          status: 'inactive',
+          create_at: '2019-08-11 11:12:12'
+        }
       ],
       loading: false
     }

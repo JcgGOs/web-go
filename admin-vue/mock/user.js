@@ -76,21 +76,21 @@ export default [
     response: config => {
       return [
         {
-          id:1,
+          id: 1,
           username: 'username_1',
-          password:'password_1',
-          email:'email',
-          status:'active',
-          create_at:'2019-08-09 13:12:12',
+          password: 'password_1',
+          email: 'email',
+          status: 'active',
+          create_at: '2019-08-09 13:12:12'
         },
         {
-          id:2,
+          id: 2,
           username: 'username_2',
-          password:'password_2',
-          email:'email@email.com',
-          status:'active',
-          create_at:'2019-08-09 13:12:12',
-        },
+          password: 'password_2',
+          email: 'email@email.com',
+          status: 'active',
+          create_at: '2019-08-09 13:12:12'
+        }
       ]
     }
   },
