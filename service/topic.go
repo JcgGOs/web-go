@@ -16,7 +16,7 @@ func Topics(num int) []model.Topic {
 }
 
 //TopicByID service topics
-func TopicByID(num int8) model.TopicTO {
+func TopicByID(num int64) (topic model.TopicTO, err error) {
 	return model.TopicTO{
 		Topic: model.Topic{
 			ID:      int64(num),
@@ -26,9 +26,35 @@ func TopicByID(num int8) model.TopicTO {
 		Tags:     []string{"java", "golang", "javascript"},
 		Replies: []model.ReplyTO{
 			model.ReplyTO{
-				Reply:    model.Reply{},
+				Reply: model.Reply{
+					Content: "Reply Content 1",
+				},
 				Username: "Reply1",
 			},
+			model.ReplyTO{
+				Reply: model.Reply{
+					Content: "Reply Content 2",
+				},
+				Username: "Reply2",
+			},
+			model.ReplyTO{
+				Reply: model.Reply{
+					Content: "Reply Content 3",
+				},
+				Username: "Reply3",
+			},
+			model.ReplyTO{
+				Reply: model.Reply{
+					Content: "Reply Content 4",
+				},
+				Username: "Reply4",
+			},
+			model.ReplyTO{
+				Reply: model.Reply{
+					Content: "Reply Content 4",
+				},
+				Username: "Reply4",
+			},
 		},
-	}
+	}, nil
 }

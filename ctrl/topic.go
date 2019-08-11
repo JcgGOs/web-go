@@ -2,8 +2,9 @@ package ctrl
 
 import (
 	"net/http"
+	"strconv"
 
-	"bloom.io/model"
+	"bloom.io/service"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,7 +17,13 @@ func Topic(c *gin.Context) {
 		return
 	}
 
-	topic := model.Topic{Title: "我的成神之路", Content: "just  a test"}
+	topicID, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		c.Redirect(http.StatusMovedPermanently, "/error/404")
+		c.Abort()
+	}
+
+	topic, _ := service.TopicByID(topicID)
 	c.HTML(http.StatusOK, "topic.html", gin.H{
 		"topic": topic,
 	})
