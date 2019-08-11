@@ -8,7 +8,7 @@ import (
 func Login(username string, password string) (interface{}, bool) {
 	if username == password {
 		return model.User{Username: username, Password: password}, true
-	} else {
-		return nil, false
 	}
+
+	return nil, false
 }

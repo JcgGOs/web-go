@@ -4,9 +4,8 @@ import (
 	"encoding/gob"
 	"net/http"
 
-	"bloom.io/middleware"
-
 	"bloom.io/model"
+	"bloom.io/tool"
 
 	"bloom.io/ctrl"
 	"github.com/gin-contrib/sessions"
@@ -24,7 +23,7 @@ func main() {
 			gob.Register(model.User{})
 		}
 
-		r.Use(middleware.Authz)
+		// r.Use(middleware.Authz)
 
 		r.StaticFile("/robots.txt", "./static/robots.txt")
 		r.StaticFile("/favicon.ico", "./static/favicon.ico")
@@ -36,12 +35,14 @@ func main() {
 	}
 
 	r.GET("/", ctrl.Index)
+	r.GET("/error/:error", ctrl.Error)
 
 	r.GET("/login", ctrl.Login)
 	r.POST("/login", ctrl.LoginHandle)
-	r.POST("/logout", middleware.Logout)
+	r.POST("/logout", tool.Logout)
 
 	r.GET("/user/:name", ctrl.UserByName)
+	r.GET("/topic/:id", ctrl.Topic)
 
 	v2 := r.Group("/v2")
 	{

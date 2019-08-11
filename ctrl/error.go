@@ -6,12 +6,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Error404 ctrl.Index
-func Error404(c *gin.Context) {
-	c.HTML(http.StatusOK, "404.html", gin.H{})
-}
-
-//Error500 ctrl.Index
-func Error500(c *gin.Context) {
-	c.HTML(http.StatusOK, "500.html", gin.H{})
+//Error ctrl.Index
+func Error(c *gin.Context) {
+	code := c.Param("error")
+	switch code {
+	case "404":
+		c.HTML(http.StatusNotFound, "404.html", gin.H{})
+	default:
+		c.HTML(http.StatusInternalServerError, "500.html", gin.H{})
+	}
 }

@@ -1,9 +1,13 @@
 package model
 
+import "time"
+
 //User user
 type User struct {
-	ID       int8   `json:"id,omitempty"`
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Email    string `json:"email,omitempty"`
+	ID       int64     `json:"id,omitempty"`
+	Username string    `json:"username,omitempty"`
+	Password string    `json:"password,omitempty"`
+	Email    string    `json:"email,omitempty"`
+	CreateAt time.Time `json:"create_at,omitempty"`
+	UpdateAt time.Time `json:"update_at,omitempty"`
 }

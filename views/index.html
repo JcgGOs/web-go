@@ -50,49 +50,56 @@
             color: #000
         }
 
-        .topic-activity{
+        .topic-activity {
             font-size: 11px;
             margin-top: 5px;
-            margin-bottom:5px;
+            margin-bottom: 5px;
             color: #ccc
         }
-        .topic-activity a{
+
+        .topic-activity a {
             text-decoration: none;
             color: #999;
             margin-right: 2px;
         }
-        .tag{
-            border:solid 0px;
+
+        .tag {
+            border: solid 0px;
             background-color: #f5f5f5;
             font-weight: bold;
         }
 
-        .avatar{
+        .avatar {
             width: 48px;
             height: 48px;
         }
 
-        .pagination{
+        .pagination {
             margin-top: 15px;
         }
-        .page{
+
+        .page {
             text-decoration: none;
             padding: 5px 10px 5px 10px;
-            
+
         }
-        .box{
-            border:solid 1px gray;
+
+        .box {
+            border: solid 1px gray;
             margin: 10px 0 10px 0;
             padding: 5px;
         }
-        .box ul{
+
+        .box ul {
             display: inline-block;
         }
-        .box a{
+
+        .box a {
             display: block;
             font-size: 13px;
         }
-        .box .title{
+
+        .box .title {
             line-height: 24px;
             font-size: 20px;
             font-weight: bold;
@@ -113,9 +120,11 @@
             </li>
         </ul>
 
+        {{if .user}}
         <ul style="float: right;margin-right:25px">
             <li><a href="#">{{.user.Username}}</a></li>
         </ul>
+        {{end}}
     </div>
     <div style="clear: both"></div>
     <div style="min-height: 600px;margin-left: 5%;width: 90%">
@@ -129,16 +138,14 @@
                     <li><a class="tab" href="#">城市</a></li>
                 </ul>
             </div>
-            
+
+            {{range .topics}}
             <div class="topic" style="display:flex;margin:2px 0 0px 0;border-bottom:1px solid #e2e2e2">
-                
-               <img class="avatar" src="/static/img/avatar.jpg" style="margin-right: 10px;">
-                
-                
+                <img class="avatar" src="/static/img/avatar.jpg" style="margin-right: 10px;">
                 <div style="display: inline-block;    flex:1;">
                     <div class="topic-summary">
-                        <span>我的Go 语言学习之路</span>
-                        <span style="float: right;font-weight: bold">hellsam</span>
+                        <span><a href="/topic/{{.Topic.ID}}">{{.Topic.Title}}</a></span>
+                        <span style="float: right;font-weight: bold">{{.Username}}</span>
                     </div>
                     <div class="topic-activity">
                         <span class="tags">
@@ -150,8 +157,8 @@
                         </span>
                         <span>•</span>
                         <span>
-                            
-                            <a href="#111111111">	凉丶心园 </a>
+
+                            <a href="#111111111"> 凉丶心园 </a>
                             <span>回复</span>
                             <span>•</span>
                             <span>12小时前</span>
@@ -160,6 +167,7 @@
                     </div>
                 </div>
             </div>
+            {{end}}
 
             <div class="pagination" style="text-align: center">
                 <ul>
@@ -177,8 +185,8 @@
             <div class="box" style="border: solid 1px green">
                 <img class="avatar" src="/static/img/avatar.jpg" style="display: inline;margin-left: 10%">
                 <div style="display: inline-block;margin-left: 15%">
-                    <div >GoLang</div>
-                    <div ><a href="#">设置</a></div>
+                    <div>GoLang</div>
+                    <div><a href="#">设置</a></div>
                 </div>
                 <div>
                     <a href="" style="margin-left: 10%;margin-right: 20%;">灌水</a>
@@ -196,12 +204,12 @@
             <div class="box">
                 <div class="title">title</div>
                 <div>
-                        <a >主题数: 9522 个</a>
-                        <a >文章数: 21931 篇</a>
-                        <a >回复数: 33933 条</a>
-                        <a >资源数: 15289 个</a>
-                        <a >项目数: 942 个</a>
-                        <a >图书数: 72 本</a>
+                    <a>主题数: 9522 个</a>
+                    <a>文章数: 21931 篇</a>
+                    <a>回复数: 33933 条</a>
+                    <a>资源数: 15289 个</a>
+                    <a>项目数: 942 个</a>
+                    <a>图书数: 72 本</a>
                 </div>
             </div>
         </div>

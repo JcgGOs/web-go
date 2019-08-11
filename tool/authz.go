@@ -1,4 +1,4 @@
-package middleware
+package tool
 
 import (
 	"fmt"
@@ -14,6 +14,7 @@ import (
 var excludePath = []string{
 	"/",
 	"/login",
+	"/topic",
 }
 
 //Authz authz
