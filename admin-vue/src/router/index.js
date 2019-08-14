@@ -87,13 +87,13 @@ export const constantRoutes = [
         path: '/index',
         name: 'Topic Index',
         component: () => import('@/views/topic/index'),
-        meta: { title: 'Topic List', icon: 'table' }
+        meta: { title: 'Topics', icon: 'table' }
       },
       {
         path: '/create',
         name: 'Topic Create',
         component: () => import('@/views/topic/create'),
-        meta: { title: 'Topic Create', icon: 'table' }
+        meta: { title: 'Create', icon: 'table' }
       }
     ]
   },
