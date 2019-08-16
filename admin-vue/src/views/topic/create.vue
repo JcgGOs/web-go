@@ -13,6 +13,9 @@
       <el-form-item label="Content">
         <el-input v-model="form.content" :rows="17" type="textarea" />
       </el-form-item>
+      <el-form-item label="Content">
+        <markdown-editor ref="markdownEditor" v-model="form.mkcontent" height="200px" />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Create</el-button>
         <el-button @click="onCancel">Cancel</el-button>
@@ -22,7 +25,10 @@
 </template>
 
 <script>
+import MarkdownEditor from '@/components/Markdown'
+
 export default {
+  components: { MarkdownEditor },
   data() {
     return {
       form: {

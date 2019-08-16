@@ -6,8 +6,8 @@
       <el-select v-model="form.importance" placeholder="Imp" clearable style="width: 90px" class="filter-item">
         <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
       </el-select>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter"/>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-plus" @click="handleFilter"/>
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter" />
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-plus" @click="handleFilter" />
     </div>
 
     <el-table
@@ -40,22 +40,21 @@
       </el-table-column>
       <el-table-column align="center" prop="created_at" label="CreateAt" width="160">
         <template slot-scope="scope">
-          <el-tag >{{ scope.row.create_at }}</el-tag>
+          <el-tag>{{ scope.row.create_at }}</el-tag>
         </template>
       </el-table-column>
 
       <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialog()"/>
-          <el-button v-if="row.status!='published'" size="mini" type="success" icon="el-icon-success" @click="handleModifyStatus(row,'published')"/>
-          <el-button v-if="row.status!='draft'" size="mini" icon="el-icon-question" @click="handleModifyStatus(row,'draft')"/>
-          <el-button v-if="row.status!='deleted'" size="mini" icon="el-icon-delete" type="danger" @click="handleModifyStatus(row,'deleted')"/>
+          <el-button type="primary" size="mini" icon="el-icon-edit" @click="dialog()" />
+          <el-button v-if="row.status!='published'" size="mini" type="success" icon="el-icon-success" @click="handleModifyStatus(row,'published')" />
+          <el-button v-if="row.status!='draft'" size="mini" icon="el-icon-question" @click="handleModifyStatus(row,'draft')" />
+          <el-button v-if="row.status!='deleted'" size="mini" icon="el-icon-delete" type="danger" @click="handleModifyStatus(row,'deleted')" />
         </template>
       </el-table-column>
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="page.page" :limit.sync="page.limit" @pagination="find" />
-
 
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
       <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
@@ -111,18 +110,18 @@ export default {
           create_at: '2019/08/11 11:12:12'
         }
       ],
-      form:{
-        title:""
+      form: {
+        title: ''
       },
       importanceOptions: [1, 2, 3],
       total: 200,
-      page:{
+      page: {
         page: 1,
         limit: 20,
         importance: undefined,
         title: undefined,
         type: undefined,
-        sort: '+id'        
+        sort: '+id'
       },
       dialogPvVisible: false,
       loading: false
@@ -148,7 +147,7 @@ export default {
       alert('handle Update')
     },
     handleModifyStatus(row, status) {
-      alert('handle modify status'+JSON.stringify(row))
+      alert('handle modify status' + JSON.stringify(row))
     }
   }
 }
