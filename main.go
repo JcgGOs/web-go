@@ -5,10 +5,11 @@ import (
 	"html/template"
 	"net/http"
 
-	"bloom.io/model"
-	"bloom.io/tool"
+	"bloom.io/common"
+	"bloom.io/login"
+	"bloom.io/topic"
+	"bloom.io/user"
 
-	"bloom.io/ctrl"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/memstore"
 	"github.com/gin-gonic/gin"
@@ -21,7 +22,7 @@ func main() {
 		store := memstore.NewStore([]byte("secret"))
 		r.Use(sessions.Sessions("mysession", store))
 		{
-			gob.Register(model.User{})
+			gob.Register(user.User{})
 		}
 
 		// r.Use(middleware.Authz)
@@ -30,8 +31,8 @@ func main() {
 		r.StaticFile("/favicon.ico", "./static/favicon.ico")
 		r.Static("/static", "./static")
 		r.SetFuncMap(template.FuncMap{
-			"fmtDate": tool.FmtDate,
-			"fmtTime": tool.FmtTime,
+			"fmtDate": common.FmtDate,
+			"fmtTime": common.FmtTime,
 		})
 		r.LoadHTMLGlob("views/*.html")
 		r.NoRoute(func(c *gin.Context) {
@@ -39,27 +40,23 @@ func main() {
 		})
 	}
 
-	r.GET("/", ctrl.Index)
-	r.GET("/error/:error", ctrl.Error)
+	r.GET("/", common.Index)
+	r.GET("/error/:error", common.Error)
 
-	r.GET("/login", ctrl.Login)
-	r.POST("/login", ctrl.LoginHandle)
-	r.POST("/logout", tool.Logout)
+	r.GET("/login", login.GET)
+	r.POST("/login", login.POST)
+	r.GET("/logout", login.Logout)
 
-	r.GET("/user/:name", ctrl.UserByName)
-	r.GET("/topic/:id", ctrl.Topic)
-
-	v2 := r.Group("/v2")
+	//user/:name
+	userGroup := r.Group("/user")
 	{
-		v2.GET("/user/:name", func(c *gin.Context) {
-			name := c.Param("name")
-			c.String(http.StatusOK, "v2 Hello %s", name)
-		})
+		userGroup.GET("/:name", user.GetByName)
+	}
 
-		v2.GET("/profile/:id", func(c *gin.Context) {
-			id := c.Param("id")
-			c.String(http.StatusOK, "v2 id  %s", id)
-		})
+	//topic/:id
+	topicGroup := r.Group("/topic")
+	{
+		topicGroup.GET("/:id", topic.GetByID)
 	}
 
 	r.Run(":8000")

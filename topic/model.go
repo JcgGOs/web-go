@@ -1,7 +1,9 @@
-package model
+package topic
 
 import (
 	"time"
+
+	"bloom.io/reply"
 )
 
 //Topic model
@@ -16,10 +18,10 @@ type Topic struct {
 	UpdateAt time.Time `json:"update_at,omitempty"`
 }
 
-//TopicTO transfer object
-type TopicTO struct {
+//TO transfer object
+type TO struct {
 	Topic
 	Username string
 	Tags     []string
-	Replies  []ReplyTO
+	Replies  []reply.TO
 }

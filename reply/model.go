@@ -1,4 +1,4 @@
-package model
+package reply
 
 import (
 	"strconv"
@@ -16,8 +16,8 @@ type Reply struct {
 	UpdateAt time.Time `json:"update_at,omitempty"`
 }
 
-//ReplyTO reply to topic
-type ReplyTO struct {
+//TO reply to topic
+type TO struct {
 	Reply
 	Username string
 }

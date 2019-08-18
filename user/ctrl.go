@@ -1,4 +1,4 @@
-package ctrl
+package user
 
 import (
 	"net/http"
@@ -6,14 +6,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//User user handler
-func User(c *gin.Context) {
+//GetByName user handler
+func GetByName(c *gin.Context) {
 	name := c.Param("name")
 	c.String(http.StatusOK, "Hello %s", name)
 }
 
-//UserByName user handler
-func UserByName(c *gin.Context) {
+//PostByName user handler
+func PostByName(c *gin.Context) {
 	name := c.Param("name")
 	c.String(http.StatusOK, "Hello %s", name)
 }
