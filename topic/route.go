@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//GetByID topic handle
-func GetByID(c *gin.Context) {
+//RouteByID topic handle
+func RouteByID(c *gin.Context) {
 	id := c.Param("id")
 	if len(id) == 0 {
 		c.Redirect(http.StatusMovedPermanently, "/error/404")

@@ -40,24 +40,23 @@ func main() {
 		})
 	}
 
-	r.GET("/", common.Index)
-	r.GET("/error/:error", common.Error)
+	r.GET("/", common.RouteIndex)
+	r.GET("/error/:error", common.RouteError)
 
-	r.GET("/login", login.GET)
-	r.POST("/login", login.POST)
-	r.GET("/logout", login.Logout)
+	r.GET("/login", login.RouteGET)
+	r.POST("/login", login.RoutePOST)
+	r.GET("/logout", login.RouteLogout)
 
 	//user/:name
 	userGroup := r.Group("/user")
 	{
-		userGroup.GET("/:name", user.GetByName)
+		userGroup.GET("/:id", user.RouteByID)
 	}
 
 	//topic/:id
 	topicGroup := r.Group("/topic")
 	{
-		topicGroup.GET("/:id", topic.GetByID)
+		topicGroup.GET("/:id", topic.RouteByID)
 	}
-
 	r.Run(":8000")
 }

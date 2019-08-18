@@ -7,8 +7,8 @@ import (
 	"bloom.io/reply"
 )
 
-//Topics service topics
-func Topics(num int) []Topic {
+//TopN service topics
+func TopN(num int) []Topic {
 	return []Topic{
 		Topic{ID: 1, Title: "title", Content: "username", CreateAt: time.Now()},
 		Topic{ID: 2, Title: "title_2", Content: "username_2", CreateAt: time.Now()},

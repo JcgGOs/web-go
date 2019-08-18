@@ -12,8 +12,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Index ctrl.Index
-func Index(c *gin.Context) {
+//RouteIndex ctrl.RouteIndex
+func RouteIndex(c *gin.Context) {
 	user := sessions.Default(c).Get("user")
 	// if user == nil {
 	// 	user = model.User{Username: "anonymous"}
@@ -42,8 +42,8 @@ func mock(num int) []topic.TO {
 	return topics
 }
 
-//Error ctrl.Index
-func Error(c *gin.Context) {
+//RouteError ctrl.Index
+func RouteError(c *gin.Context) {
 	code := c.Param("error")
 	switch code {
 	case "404":

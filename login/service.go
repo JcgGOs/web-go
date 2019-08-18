@@ -1,6 +1,8 @@
 package login
 
-import "bloom.io/user"
+import (
+	"bloom.io/user"
+)
 
 //Login Action
 func Login(username string, password string) (interface{}, bool) {
@@ -9,4 +11,12 @@ func Login(username string, password string) (interface{}, bool) {
 	}
 
 	return nil, false
+}
+
+//Handle the login action
+func Handle(cmd Command) (user.User, bool) {
+	return user.User{
+		Username: cmd.Username,
+		Password: cmd.Password,
+	}, true
 }
